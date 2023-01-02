@@ -1,25 +1,20 @@
 import React from 'react'
 import './heroes.scss'
-import Ana from '../../assets/Icon-Ana.webp'
+import HeroList from '../../assets'
 
 function Heroes() {
+
   return (
     <div className="heroContainer">
         <div className="heroHeader">
             <p>Heroes</p>
         </div>
         <div className="heroWrapper">
-            <div className="hero" draggable='true'>
-                <img src={Ana} alt="" />
-            </div>
-            <div className="hero"></div>
-            <div className="hero"></div>
-            <div className="hero"></div>
-            <div className="hero"></div>
-            <div className="hero"></div>
-            <div className="hero"></div>
-            <div className="hero"></div>
-            <div className="hero"></div>
+            {
+                HeroList.map((hero) => 
+                <img className="hero" src={hero} alt='' />
+                )
+            }
         </div>
     </div>
   )

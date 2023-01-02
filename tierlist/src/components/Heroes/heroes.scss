@@ -5,10 +5,22 @@
     height: 100vh;
     width: 200px;
     background-color: darkblue;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar{
+        display: none;
+    }
+
+    
 
     .heroHeader{
+        position:fixed;
+        right: 0;
+        top: 0;
         height: 60px;
-        width: 100%;
+        width: 200px;
+        z-index: 1;
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -25,7 +37,8 @@
 
     .heroWrapper{
         position: relative;
-        height: 100%;
+        top: 60px;
+        height: calc(100% - 60px);
         width: 100%;
         background-color: lightyellow;
         display: flex;
@@ -36,6 +49,11 @@
             width: 100px;
             height: 100px;
             background-color: lightgray;
+
+            img{
+                width: 100px;
+                height: 100px;
+            }
         }
     }
 }
