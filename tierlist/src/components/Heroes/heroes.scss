@@ -1,4 +1,4 @@
-.heroContainer{
+.heroContainer {
     position: fixed;
     right: 0;
     top: 0;
@@ -6,7 +6,7 @@
     width: 200px;
     background-color: darkblue;
 
-    .heroHeader{
+    .heroHeader {
         height: 60px;
         width: 100%;
         display: flex;
@@ -23,7 +23,7 @@
 
     }
 
-    .heroWrapper{
+    .heroWrapper {
         position: relative;
         height: 100%;
         width: 100%;
@@ -32,7 +32,7 @@
         flex-wrap: wrap;
         align-content: flex-start;
 
-        .hero{
+        .hero {
             width: 100px;
             height: 100px;
             background-color: lightgray;

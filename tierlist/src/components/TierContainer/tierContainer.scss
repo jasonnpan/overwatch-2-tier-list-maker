@@ -1,41 +1,25 @@
-.tierContainer{
+#board {
     display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: lightcoral;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height:93.6vh;
+    width: 100vw;
+    background-color: grey;
 
-    .tiers{
-        position: relative;
+    .row {
+        height: 100px;
         width: 100%;
-        height: auto;
-        margin: 5px 0;
-        background-color: lightblue;
-        display: flex;
-        align-items: center;
+        background-color: darkcyan;
 
-
-        .tierHeader{
-            width: 100px;
-            background-color: lavenderblush;
-            text-align: center;
-            height: 100px;
-            line-height: 100px;
-        }
-
-        .tierContentWrapper{
-            position: relative;
-            width: calc(100% - 100px);
+        .label {
             display: flex;
-            flex-wrap: wrap;
-
-            .tierContent{
-                width: 100px;
-                height: 100px;
-                background-color: lightgreen;
-            }
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            width: 100px;
+            background-color: cornflowerblue;
+            color: white;
         }
-
-        
     }
 }

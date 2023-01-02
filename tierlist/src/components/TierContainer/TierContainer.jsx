@@ -3,68 +3,21 @@ import "./tierContainer.scss";
 
 function TierContainer() {
     return (
-        <div className="tierContainer">
-            <div className="tiers">
-                <div className="tierHeader">S</div>
-                <div className="tierContentWrapper">
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                    <div className="tierContent"></div>
-                </div>
+        <div id="board">
+            <div className="row">
+                <div className="label">S</div>
             </div>
-            <div className="tiers">
-                <div className="tierHeader"></div>
-                <div className="tierContentWrapper">
-                    <div className="tierContent"></div>
-                </div>
+            <div className="row">
+                <div className="label">A</div>
             </div>
-            <div className="tiers">
-                <div className="tierHeader"></div>
-                <div className="tierContentWrapper">
-                    <div className="tierContent"></div>
-                </div>
+            <div className="row">
+                <div className="label">B</div>
             </div>
-            <div className="tiers">
-                <div className="tierHeader"></div>
-                <div className="tierContentWrapper">
-                    <div className="tierContent"></div>
-                </div>
+            <div className="row">
+                <div className="label">C</div>
             </div>
-            <div className="tiers">
-                <div className="tierHeader"></div>
-                <div className="tierContentWrapper">
-                    <div className="tierContent"></div>
-                </div>
-            </div>
-            <div className="tiers">
-                <div className="tierHeader"></div>
-                <div className="tierContentWrapper">
-                    <div className="tierContent"></div>
-                </div>
-            </div>
-            <div className="tiers">
-                <div className="tierHeader"></div>
-                <div className="tierContentWrapper">
-                    <div className="tierContent"></div>
-                </div>
+            <div className="row">
+                <div className="label">D</div>
             </div>
         </div>
     );
