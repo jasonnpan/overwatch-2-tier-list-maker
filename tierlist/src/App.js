@@ -1,10 +1,11 @@
 import Heroes from "./components/Heroes/Heroes";
 import TierContainer from "./components/TierContainer/TierContainer"
 import TierListHeader from "./components/TierListHeader/TierListHeader"
+import './app.css'
 
 function App() {
   return (
-    <div className="App">
+    <div className="tierList">
       <TierListHeader />
       <TierContainer />
       <Heroes />
