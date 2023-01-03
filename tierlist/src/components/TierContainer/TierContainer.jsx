@@ -61,59 +61,57 @@ function TierContainer({ data }) {
 
     return (
         <div className="tierContainer">
-            <div className="drag-n-drop">
-                {list.map((tier, tierIndex) => (
-                    <div
-                        key={tier.title}
-                        className="tiers"
-                        onDragEnter={
-                            dragging && !tier.items.length
-                                ? (e) =>
-                                      handleDragEnter(e, {
-                                          tierIndex,
-                                          heroIndex: 0,
-                                      })
-                                : null
-                        }
-                    >
-                        <div className="tierHeader">{tier.title}</div>
-                        <div className="tierContentWrapper">
-                            {tier.items.map((hero, heroIndex) => (
-                                <div
-                                    key={hero.id}
-                                    className={
-                                        dragging
-                                            ? getStyles({
+            {list.map((tier, tierIndex) => (
+                <div
+                    key={tier.title}
+                    className="tiers"
+                    onDragEnter={
+                        dragging && !tier.items.length
+                            ? (e) =>
+                                  handleDragEnter(e, {
+                                      tierIndex,
+                                      heroIndex: 0,
+                                  })
+                            : null
+                    }
+                >
+                    <div className="tierHeader">{tier.title}</div>
+                    <div className="tierContentWrapper">
+                        {tier.items.map((hero, heroIndex) => (
+                            <div
+                                key={hero.id}
+                                className={
+                                    dragging
+                                        ? getStyles({
+                                              tierIndex,
+                                              heroIndex,
+                                          })
+                                        : "tierContent"
+                                }
+                                draggable
+                                onDragStart={(e) => {
+                                    handleDragStart(e, {
+                                        tierIndex,
+                                        heroIndex,
+                                    });
+                                }}
+                                onDragEnter={
+                                    dragging
+                                        ? (e) => {
+                                              handleDragEnter(e, {
                                                   tierIndex,
                                                   heroIndex,
-                                              })
-                                            : "tierContent"
-                                    }
-                                    draggable
-                                    onDragStart={(e) => {
-                                        handleDragStart(e, {
-                                            tierIndex,
-                                            heroIndex,
-                                        });
-                                    }}
-                                    onDragEnter={
-                                        dragging
-                                            ? (e) => {
-                                                  handleDragEnter(e, {
-                                                      tierIndex,
-                                                      heroIndex,
-                                                  });
-                                              }
-                                            : null
-                                    }
-                                >
-                                    {hero}
-                                </div>
-                            ))}
-                        </div>
+                                              });
+                                          }
+                                        : null
+                                }
+                            >
+                                {hero}
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </div>
     );
 }
