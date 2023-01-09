@@ -1,15 +1,22 @@
 import React, { useState, useRef } from "react";
-import "./tierContainer.scss";
+import "./tierListContent.scss";
 
-function TierContainer({ data }) {
-    const [list, setList] = useState(data);
+function TierListContent({ data, heroList }) {
+    const [tiersList, setTiersList] = useState(data);
+    const [heroesList, setHeroesList] = useState(heroList);
+
     const [dragging, setDragging] = useState(false);
+    const [dragPanel, setDragPanel] = useState(false);
 
     const dragItem = useRef();
     const dragNode = useRef();
 
     const handleDragStart = (e, params) => {
-        console.log("drag starting..", params);
+        if (!isNaN(+params)) {
+            setDragPanel(true);
+        }
+
+        console.log("drag start..", params);
         dragItem.current = params;
         dragNode.current = e.target;
         dragNode.current.addEventListener("dragend", handleDragEnd);
@@ -19,12 +26,33 @@ function TierContainer({ data }) {
     };
 
     const handleDragEnter = (e, params) => {
-        console.log("Entering drag..", params);
+        console.log("drag enter..");
 
         const currentItem = dragItem.current;
-        if (e.target !== dragNode.current) {
+
+        if (dragPanel) {
+            console.log("from drag panel", params, heroesList[currentItem]);
+
+            setTiersList((oldList) => {
+                let newList = JSON.parse(JSON.stringify(oldList));
+                newList[params.tierIndex].items.splice(
+                    params.heroIndex,
+                    0,
+                    heroesList[currentItem]
+                );
+                dragItem.current = params;
+                setDragPanel(false);
+                return newList;
+            });
+
+            setHeroesList((current) =>
+                current.filter((element) => {
+                    return element !== heroesList[currentItem];
+                })
+            );
+        } else if (e.target !== dragNode.current) {
             console.log("TARGET IS NOT THE SAME");
-            setList((oldList) => {
+            setTiersList((oldList) => {
                 let newList = JSON.parse(JSON.stringify(oldList));
                 newList[params.tierIndex].items.splice(
                     params.heroIndex,
@@ -41,8 +69,9 @@ function TierContainer({ data }) {
     };
 
     const handleDragEnd = () => {
-        console.log("Ending drag..");
+        console.log("drag end..");
         setDragging(false);
+        setDragPanel(false);
         dragNode.current.removeEventListener("dragend", handleDragEnd);
         dragItem.current = null;
         dragNode.current = null;
@@ -50,6 +79,7 @@ function TierContainer({ data }) {
 
     const getStyles = (params) => {
         const currentItem = dragItem.current;
+
         if (
             currentItem.tierIndex === params.tierIndex &&
             currentItem.heroIndex === params.heroIndex
@@ -60,11 +90,11 @@ function TierContainer({ data }) {
     };
 
     return (
-        <div className="tierContainer">
-            <div className="drag-n-drop">
-                {list.map((tier, tierIndex) => (
+        <div className="tierListContent">
+            <div className="tierContainer">
+                {tiersList.map((tier, tierIndex) => (
                     <div
-                        key={tier.title}
+                        key={tier.name}
                         className="tiers"
                         onDragEnter={
                             dragging && !tier.items.length
@@ -80,7 +110,7 @@ function TierContainer({ data }) {
                         <div className="tierContentWrapper">
                             {tier.items.map((hero, heroIndex) => (
                                 <div
-                                    key={hero.id}
+                                    key={hero}
                                     className={
                                         dragging
                                             ? getStyles({
@@ -96,26 +126,37 @@ function TierContainer({ data }) {
                                             heroIndex,
                                         });
                                     }}
-                                    onDragEnter={
-                                        dragging
-                                            ? (e) => {
-                                                  handleDragEnter(e, {
-                                                      tierIndex,
-                                                      heroIndex,
-                                                  });
-                                              }
-                                            : null
-                                    }
+                                    onDragEnter={(e) => {
+                                        handleDragEnter(e, {
+                                            tierIndex,
+                                            heroIndex,
+                                        });
+                                    }}
                                 >
-                                    {hero}
+                                    <img src={hero} alt="" />
                                 </div>
                             ))}
                         </div>
                     </div>
                 ))}
             </div>
+            <div className="heroContainer">
+                <div className="heroWrapper">
+                    {heroesList.map((item, itemIndex) => (
+                        <div
+                            className="hero"
+                            draggable
+                            onDragStart={(e) => {
+                                handleDragStart(e, itemIndex);
+                            }}
+                        >
+                            <img src={item} alt="" />
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
 
-export default TierContainer;
+export default TierListContent;
