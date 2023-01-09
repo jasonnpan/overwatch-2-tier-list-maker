@@ -5,9 +5,6 @@ import Ana from '../../assets/Icon-Ana.webp'
 function Heroes() {
   return (
     <div className="heroContainer">
-        <div className="heroHeader">
-            <p>Heroes</p>
-        </div>
         <div className="heroWrapper">
             <div className="hero" draggable='true'>
                 <img src={Ana} alt="" />

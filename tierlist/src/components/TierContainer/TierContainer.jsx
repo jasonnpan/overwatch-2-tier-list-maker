@@ -4,7 +4,7 @@ import "./tierContainer.scss";
 function TierContainer() {
     return (
         <div id="board">
-            <div className="row">
+            {/* <div className="row">
                 <div className="label">S</div>
             </div>
             <div className="row">
@@ -18,7 +18,7 @@ function TierContainer() {
             </div>
             <div className="row">
                 <div className="label">D</div>
-            </div>
+            </div> */}
         </div>
     );
 }
