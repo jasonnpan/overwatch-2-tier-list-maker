@@ -1,5 +1,8 @@
 import React, { useState, useRef } from "react";
 import "./tierListContent.scss";
+import circuitRoyalImg from "../../assets/circuit-royal.png";
+import colloseoImg from "../../assets/colloseo.png";
+import newQueenStreetImg from "../../assets/new-queen-street.png";
 
 function TierListContent({ data, heroList }) {
     const [tiersList, setTiersList] = useState(data);
@@ -89,70 +92,137 @@ function TierListContent({ data, heroList }) {
         return "tierContent";
     };
 
+    // header
+    const [background, setBackground] = useState(circuitRoyalImg);
+    const [options, setOptions] = useState("Choose Background");
+    const [button, setButton] = useState(false);
+
+    const changeBG = (e, bg, name) => {
+        setBackground(bg);
+        setOptions(name);
+        setButton(false);
+    };
+
+    const openOptions = () => {
+        setButton(true);
+    };
+
     return (
-        <div className="tierListContent">
-            <div className="tierContainer">
-                {tiersList.map((tier, tierIndex) => (
+        <div>
+            <div className="header" id="header">
+                <div className="title" id="title">
+                    {" "}
+                    My Overwatch 2 Tier List{" "}
+                </div>
+                <div className="dropdown" id="dropdown">
+                    <div className="button__preview" onClick={openOptions}>
+                        {options}
+                    </div>
                     <div
-                        key={tier.name}
-                        className="tiers"
-                        onDragEnter={
-                            dragging && !tier.items.length
-                                ? (e) =>
-                                      handleDragEnter(e, {
-                                          tierIndex,
-                                          heroIndex: 0,
-                                      })
-                                : null
+                        className={
+                            button
+                                ? "dropdown__container active"
+                                : "dropdown__container"
                         }
                     >
-                        <div className="tierHeader">{tier.title}</div>
-                        <div className="tierContentWrapper">
-                            {tier.items.map((hero, heroIndex) => (
-                                <div
-                                    key={hero}
-                                    className={
-                                        dragging
-                                            ? getStyles({
-                                                  tierIndex,
-                                                  heroIndex,
-                                              })
-                                            : "tierContent"
-                                    }
-                                    draggable
-                                    onDragStart={(e) => {
-                                        handleDragStart(e, {
-                                            tierIndex,
-                                            heroIndex,
-                                        });
-                                    }}
-                                    onDragEnter={(e) => {
-                                        handleDragEnter(e, {
-                                            tierIndex,
-                                            heroIndex,
-                                        });
-                                    }}
-                                >
-                                    <img src={hero} alt="" />
-                                </div>
-                            ))}
+                        <div
+                            value="circuit-royal"
+                            className="dropdown-content"
+                            onClick={(e) =>
+                                changeBG(e, circuitRoyalImg, "Circuit Royal")
+                            }
+                        >
+                            Circuit Royal
+                        </div>
+                        <div
+                            value="colloseo"
+                            className="dropdown-content"
+                            onClick={(e) =>
+                                changeBG(e, colloseoImg, "Colloseo")
+                            }
+                        >
+                            Colloseo
+                        </div>
+                        <div
+                            value="new-queen-street"
+                            className="dropdown-content"
+                            onClick={(e) =>
+                                changeBG(
+                                    e,
+                                    newQueenStreetImg,
+                                    "New Queen Street"
+                                )
+                            }
+                        >
+                            New Queen Street
                         </div>
                     </div>
-                ))}
+                </div>
             </div>
-            <div className="heroContainer">
-                <div className="heroWrapper">
-                    {heroesList.map((item, itemIndex) => (
+            <div className="tierListContent">
+                <div className="tierContainer" style={{backgroundImage: `url(${background})`}}>
+                    {tiersList.map((tier, tierIndex) => (
                         <div
-                            className="hero"
-                            draggable
-                            onDragStart={(e) => {
-                                handleDragStart(e, itemIndex);
-                            }}
+                            key={tier.name}
+                            className="tiers"
+                            onDragEnter={
+                                dragging && !tier.items.length
+                                    ? (e) =>
+                                          handleDragEnter(e, {
+                                              tierIndex,
+                                              heroIndex: 0,
+                                          })
+                                    : null
+                            }
                         >
-                            <img src={item} alt="" />
+                            <div className="tierHeader">{tier.title}</div>
+                            <div className="tierContentWrapper">
+                                {tier.items.map((hero, heroIndex) => (
+                                    <div
+                                        key={hero}
+                                        className={
+                                            dragging
+                                                ? getStyles({
+                                                      tierIndex,
+                                                      heroIndex,
+                                                  })
+                                                : "tierContent"
+                                        }
+                                        draggable
+                                        onDragStart={(e) => {
+                                            handleDragStart(e, {
+                                                tierIndex,
+                                                heroIndex,
+                                            });
+                                        }}
+                                        onDragEnter={(e) => {
+                                            handleDragEnter(e, {
+                                                tierIndex,
+                                                heroIndex,
+                                            });
+                                        }}
+                                    >
+                                        <img src={hero} alt="" />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     ))}
+                </div>
+                <div className="heroContainer">
+                    <div className="heroWrapper">
+                        {heroesList.map((item, itemIndex) => (
+                            <div
+                                className="hero"
+                                draggable
+                                onDragStart={(e) => {
+                                    handleDragStart(e, itemIndex);
+                                }}
+                            >
+                                <img src={item} alt="" />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

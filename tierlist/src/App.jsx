@@ -1,4 +1,3 @@
-import TierListHeader from "./components/TierListHeader/TierListHeader";
 import HeroList from "./assets";
 import TierListContent from "./components/TierListContent/TierListContent";
 import "./app.scss";
@@ -23,7 +22,6 @@ function App() {
 
     return (
         <div className="App">
-            <TierListHeader />
             <TierListContent data={data} heroList={HeroList} />
             <div className="form">
                 <form onSubmit={handleSubmit}>
