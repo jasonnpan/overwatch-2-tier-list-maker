@@ -20,10 +20,6 @@ Overwatch 2 Tier List Maker is a simple frontend web app that allows users to cr
         <td> Framework & Libraries </td>
         <td> React </td>
     </tr>
-        <tr>
-        <td> Other Tools </td>
-        <td> Google Cloud, AWS Buckets </td>
-    </tr>
 </table>
 
 Disclaimer: We do not own the images used in this app. All credits go to its rightful owner.
