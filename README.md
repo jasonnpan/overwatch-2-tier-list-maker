@@ -1,6 +1,6 @@
 # Overwatch 2 Tier List Maker
 
-<h3> 🎨 Web App to Decide Your Favourite OW2 Characters!</h3>
+<h3> 🎮 Web App to Showcase Your Favourite OW2 Characters!</h3>
 
 Overwatch 2 Tier List Maker is a simple frontend web app that allows users to create their own OW2 tier list
 * Users can add customizable tiers to their list
